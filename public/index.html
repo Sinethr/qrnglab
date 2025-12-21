@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>Quantum Random Lab - True Randomness from Quantum Physics</title>
+    <meta name="description"
+        content="Generate truly random numbers, colors, passwords, and pick winners using quantum randomness from ANU's Quantum Random Number Generator. Perfect for games, security, and fair selection.">
+    <meta name="keywords"
+        content="quantum random number generator, quantum randomness, random name picker, quantum color generator, quantum password generator, fair dice, lottery numbers, quantum crypto">
+    <meta name="msapplication-navbutton-color" content="#343433">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#343433">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+    <meta name="theme-color" content="#FFFFFF">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'quantum': {
+                            'darkest': '#020202',
+                            'dark': '#0d2818',
+                            'medium': '#04471c',
+                            'light': '#058c42',
+                            'bright': '#16db65',
+                        },
+                        'primary': {
+                            DEFAULT: '#058c42',
+                            50: '#e6f7ee',
+                            100: '#b3e6cc',
+                            200: '#80d5aa',
+                            300: '#4dc488',
+                            400: '#1ab366',
+                            500: '#058c42',
+                            600: '#047035',
+                            700: '#035428',
+                            800: '#02381b',
+                            900: '#011c0e',
+                        },
+                        'accent': {
+                            DEFAULT: '#16db65',
+                            light: '#5fe894',
+                            dark: '#04471c',
+                        }
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* CSS Variables with Custom Green Palette */
+        :root {
+            /* Custom Green Palette */
+            --quantum-darkest: #020202;
+            --quantum-dark: #0d2818;
+            --quantum-medium: #04471c;
+            --quantum-light: #058c42;
+            --quantum-bright: #16db65;
+
+            /* Primary Brand Colors (using green palette) */
+            --primary: #058c42;
+            --primary-light: #16db65;
+            --primary-hover: #04471c;
+            --primary-bg: rgba(5, 140, 66, 0.08);
+
+            /* Background Colors - Light Theme */
+            --background: #f8f9fa;
+            --surface: #ffffff;
+            --surface-hover: #f0f1f3;
+
+            /* Text Colors - Dark on Light */
+            --text-primary: #020202;
+            --text-secondary: #0d2818;
+            --text-tertiary: #6b7280;
+
+            /* Border Colors */
+            --border: #e5e7eb;
+            --border-hover: rgba(5, 140, 66, 0.3);
+
+            /* Accent Colors */
+            --accent-green: #16db65;
+            --accent-dark: #04471c;
+
+            /* Grid Pattern */
+            --grid-size: 30px;
+            --grid-color: rgba(5, 140, 66, 0.08);
+
+            /* Success/Error */
+            --success: #16db65;
+            --error: #dc2626;
+            --warning: #d97706;
+        }
+
+        @supports (color: color(display-p3 1 1 1)) {
+            :root {
+                --primary: color(display-p3 0.020 0.549 0.259);
+                --quantum-bright: color(display-p3 0.086 0.859 0.396);
+                --quantum-medium: color(display-p3 0.016 0.278 0.110);
+                --quantum-dark: color(display-p3 0.051 0.157 0.094);
+            }
+        }
+
+        /* Grid Background Pattern */
+        .grid-bg {
+            background-image:
+                linear-gradient(0deg, var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: var(--grid-size) var(--grid-size);
+        }
+
+        /* Glow Effects */
+        .glow-orange {
+            box-shadow: 0 0 20px rgba(255, 102, 0, 0.3);
+        }
+
+        .glow-quantum {
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        ::selection {
+            background: var(--primary-bg);
+            color: var(--primary);
+        }
+
+        ::-moz-selection {
+            background: var(--primary-bg);
+            color: var(--primary);
+        }
+
+        /* Tailwind Custom Styles */
+        .tool-nav-btn {
+            @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-mono font-medium text-quantum-dark border border-transparent transition-all duration-300 whitespace-nowrap;
+        }
+
+        .tool-nav-btn:hover {
+            @apply bg-quantum-light/5 border-quantum-light/20 text-quantum-light;
+        }
+
+        .tool-nav-btn.active {
+            @apply bg-quantum-light text-white border-quantum-light shadow-md;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Custom Animations for Untold Truth */
+        @keyframes scale-up {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slide-in {
+            0% {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes highlight {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+            }
+        }
+
+        .animate-scale-up {
+            animation: scale-up 0.6s ease-out forwards;
+        }
+
+        .animate-scale-up-delayed {
+            animation: scale-up 0.6s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        .animate-fade-in {
+            animation: fade-in 0.8s ease-out;
+        }
+
+        .animate-slide-in {
+            animation: slide-in 0.8s ease-out 0.4s forwards;
+            opacity: 0;
+        }
+
+        .animate-highlight {
+            animation: highlight 2s ease-in-out infinite;
+        }
+
+        .animate-highlight-delayed {
+            animation: highlight 2s ease-in-out 0.5s infinite;
+        }
+
+        /* Scrolling Subtitle Animation */
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .animate-scroll-left {
+            animation: scroll-left 30s linear infinite;
+        }
+    </style>
+
+    <script>
+        // Expandable Cards Functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const cards = document.querySelectorAll('.topic-card');
+
+            cards.forEach(card => {
+                const btn = card.querySelector('.expand-btn');
+                const content = card.querySelector('.topic-content');
+                const preview = card.querySelector('.topic-preview');
+
+                card.addEventListener('click', function () {
+                    const isExpanded = !content.classList.contains('hidden');
+
+                    if (isExpanded) {
+                        content.classList.add('hidden');
+                        preview.classList.remove('hidden');
+                        btn.querySelector('span:first-child').textContent = 'Read More';
+                    } else {
+                        content.classList.remove('hidden');
+                        preview.classList.add('hidden');
+                        btn.querySelector('span:first-child').textContent = 'Show Less';
+                    }
+                });
+            });
+        });
+    </script>
+
+    <link rel="stylesheet" href="styles.min.css">
+    <link rel="stylesheet" href="components.min.css">
+    <script src="header.min.js"></script>
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚛️</text></svg>">
+</head>
+
+<body class="min-h-screen bg-background font-sans antialiased">
+    <div class="relative flex min-h-screen flex-col">
+        <!-- Sticky Navigation - Greptile Style -->
+        <div id="header-placeholder"></div>
+        <!-- Script already included in head -->
+
+        <!-- Hero Section - Greptile Style with Tailwind -->
+        <section class="relative flex items-center justify-center overflow-hidden py-12 lg:py-16">
+            <!-- Grid Background -->
+            <div class="absolute inset-0 pointer-events-none opacity-30"
+                style="background-image: linear-gradient(0deg, rgba(5, 140, 66, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(5, 140, 66, 0.1) 1px, transparent 1px); background-size: 30px 30px;">
+            </div>
+
+            <div class="mx-auto w-full max-w-[1550px] px-4 sm:px-12 lg:px-32 xl:px-40 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                    <!-- Left Column: Hero Content -->
+                    <div class="flex flex-col items-start space-y-6">
+                        <div
+                            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-quantum-light/10 border border-quantum-light/30">
+                            <span class="text-xs font-mono font-semibold tracking-wider text-quantum-light uppercase">⚛️
+                                Powered by Quantum Physics</span>
+                        </div>
+
+                        <!-- Super Headline -->
+                        <h2 class="text-2xl lg:text-3xl font-bold text-quantum-light animate-fade-in">
+                            Where the Universe Decides for You
+                        </h2>
+
+                        <h1 class="text-5xl lg:text-6xl xl:text-7xl font-bold text-quantum-darkest leading-tight">
+                            True Random Numbers<sup class="text-xs lg:text-sm font-semibold text-quantum-light ml-2"
+                                style="vertical-align: super;">FOREVER FREE</sup>
+                        </h1>
+
+                        <!-- Subheader -->
+                        <p
+                            class="text-base lg:text-lg text-quantum-dark leading-relaxed max-w-lg border-l-4 border-quantum-light pl-4">
+                            Born in the precision laboratories of the <strong>Australian National
+                                University</strong>—measured by lasers, verified by science, and shared openly with the
+                            tech and academic world. We're bridging the gap to bring this quantum power to the
+                            <strong>general public</strong> and educate users about true randomness.
+                        </p>
+
+                        <!-- Disclaimer -->
+                        <div class="bg-gray-50 rounded-lg p-4 border border-gray-200 max-w-lg">
+                            <p class="text-sm text-gray-600 italic">
+                                <span class="font-semibold text-quantum-darkest">Note:</span> We're not affiliated with
+                                ANU, but we harness their world-class quantum randomness stream to bring you numbers
+                                shaped by nature, not algorithms.
+                            </p>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-4">
+                            <a href="tools.html"
+                                class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-quantum-light text-white font-mono font-semibold text-sm hover:bg-quantum-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105">
+                                <span>⚛️</span>
+                                <span>FREE RANDOM GEN TOOLS</span>
+                            </a>
+                            <a href="about.html"
+                                class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-white border border-quantum-light/20 text-quantum-dark font-mono font-semibold text-sm hover:border-quantum-light hover:bg-quantum-light/5 transition-all duration-300">
+                                <span>📖</span>
+                                <span>Learn More</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Statistics -->
+                    <div class="flex flex-col space-y-6">
+                        <div class="mb-2">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div
+                                    class="flex items-center justify-center w-16 h-16 rounded-full bg-red-100 animate-pulse">
+                                    <span class="text-4xl">🔍</span>
+                                </div>
+                                <div>
+                                    <h2 class="text-4xl lg:text-5xl font-bold text-quantum-darkest animate-fade-in">
+                                        The <span class="inline-block animate-scale-up text-red-600">Untold</span> <span
+                                            class="inline-block animate-scale-up-delayed">Truth</span>
+                                    </h2>
+                                </div>
+                            </div>
+                            <p class="text-base text-gray-600 ml-20 animate-slide-in">about <span
+                                    class="font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded animate-highlight">Google
+                                    Random Numbers</span> and <span
+                                    class="font-bold text-red-600 bg-red-50 px-3 py-1.5 rounded animate-highlight-delayed">Lottery
+                                    Numbers</span></p>
+                        </div>
+
+                        <!-- Statistics Grid -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-white rounded-xl border-2 border-red-200 p-6 text-center">
+                                <div class="text-4xl font-bold text-red-600 mb-2">99%</div>
+                                <p class="text-sm text-gray-600 font-semibold">of random generators are FAKE</p>
+                            </div>
+                            <div class="bg-white rounded-xl border-2 border-red-200 p-6 text-center">
+                                <div class="text-4xl font-bold text-red-600 mb-2">100%</div>
+                                <p class="text-sm text-gray-600 font-semibold">predictable with right tools</p>
+                            </div>
+                            <div class="bg-white rounded-xl border-2 border-red-200 p-6 text-center">
+                                <div class="text-4xl font-bold text-red-600 mb-2">0%</div>
+                                <p class="text-sm text-gray-600 font-semibold">true randomness in Google/Excel</p>
+                            </div>
+                            <div class="bg-white rounded-xl border-2 border-quantum-light p-6 text-center">
+                                <div class="text-4xl font-bold text-quantum-light mb-2">1st</div>
+                                <p class="text-sm text-gray-600 font-semibold">true quantum random on web</p>
+                            </div>
+                        </div>
+
+                        <!-- Quick Facts -->
+                        <div class="bg-gradient-to-br from-red-50 to-white rounded-xl border-2 border-red-200 p-6">
+                            <h3 class="font-bold text-quantum-darkest mb-4 flex items-center gap-2">
+                                <span>💡</span>
+                                <span>What You Need to Know</span>
+                            </h3>
+                            <ul class="space-y-3 text-sm">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-red-500 flex-shrink-0">▸</span>
+                                    <span class="text-gray-600"><strong>Google Search</strong> "random number" uses
+                                        algorithms, not real randomness</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-red-500 flex-shrink-0">▸</span>
+                                    <span class="text-gray-600"><strong>Excel RAND()</strong> can be predicted if
+                                        someone knows the seed</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-red-500 flex-shrink-0">▸</span>
+                                    <span class="text-gray-600"><strong>JavaScript Math.random()</strong> repeats
+                                        patterns after billions of numbers</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-quantum-light flex-shrink-0">✓</span>
+                                    <span class="text-gray-600"><strong>Quantum randomness</strong> is physically
+                                        impossible to predict</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Animated Subtitle Section with Expandable Cards -->
+        <section id="tools" class="relative py-16 bg-white overflow-hidden border-b border-gray-200">
+            <!-- Animated Moving Subtitle -->
+            <div
+                class="relative overflow-hidden py-4 bg-gradient-to-r from-quantum-darkest via-quantum-dark to-quantum-darkest">
+                <div class="animate-scroll-left whitespace-nowrap inline-block">
+                    <span class="text-white text-lg font-mono mx-8">⚛️ Randomness Re-Invented</span>
+                    <span class="text-quantum-bright text-lg font-mono mx-8">Powered by Quantum Physics</span>
+                    <span class="text-white text-lg font-mono mx-8">⚛️ Randomness Re-Invented</span>
+                    <span class="text-quantum-bright text-lg font-mono mx-8">Powered by Quantum Physics</span>
+                    <span class="text-white text-lg font-mono mx-8">⚛️ Randomness Re-Invented</span>
+                    <span class="text-quantum-bright text-lg font-mono mx-8">Powered by Quantum Physics</span>
+                </div>
+            </div>
+
+            <div class="mx-auto w-full max-w-[1550px] px-4 sm:px-12 lg:px-32 xl:px-40 mt-12">
+                <!-- Intro Text -->
+                <div class="text-center mb-12">
+                    <p class="text-xl text-quantum-dark leading-relaxed max-w-3xl mx-auto">
+                        Not simulated. Not estimated. <strong>Born from the universe itself.</strong>
+                    </p>
+                </div>
+
+                <!-- Expandable Topic Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+                    <!-- Card 1: What Makes It Different -->
+                    <div
+                        class="topic-card group bg-white rounded-xl border-2 border-gray-200 hover:border-quantum-light transition-all duration-300 cursor-pointer flex flex-col">
+                        <div class="p-6">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div
+                                    class="flex items-center justify-center w-14 h-14 rounded-full bg-quantum-light/10 group-hover:bg-quantum-light group-hover:scale-110 transition-all duration-300">
+                                    <span class="text-3xl group-hover:text-white transition-colors">⚛️</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-quantum-darkest">What Makes It Different?</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed topic-preview">
+                                Most random generators are built on software algorithms...
+                            </p>
+                            <div class="topic-content hidden mt-4 pt-4 border-t border-gray-200">
+                                <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                    Most random generators online are built on software algorithms — clever, but
+                                    ultimately predictable.
+                                    But what happens when randomness comes directly from quantum particles?
+                                </p>
+                                <div class="space-y-2">
+                                    <div class="flex items-start gap-2">
+                                        <span class="text-quantum-bright mt-1">💠</span>
+                                        <p class="text-sm text-gray-600">Numbers no algorithm can foresee</p>
+                                    </div>
+                                    <div class="flex items-start gap-2">
+                                        <span class="text-quantum-bright mt-1">💠</span>
+                                        <p class="text-sm text-gray-600">Dice rolls that can't be reverse-engineered</p>
+                                    </div>
+                                    <div class="flex items-start gap-2">
+                                        <span class="text-quantum-bright mt-1">💠</span>
+                                        <p class="text-sm text-gray-600">Colors chosen by the fabric of reality</p>
+                                    </div>
+                                    <div class="flex items-start gap-2">
+                                        <span class="text-quantum-bright mt-1">💠</span>
+                                        <p class="text-sm text-gray-600">Passwords with unparalleled entropy</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                class="mt-4 text-sm font-mono text-quantum-light hover:text-quantum-medium flex items-center gap-2 expand-btn">
+                                <span>Read More</span>
+                                <span class="transform transition-transform group-hover:translate-x-1">→</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: How It Works -->
+                    <div
+                        class="topic-card group bg-white rounded-xl border-2 border-gray-200 hover:border-quantum-light transition-all duration-300 cursor-pointer flex flex-col">
+                        <div class="p-6">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div
+                                    class="flex items-center justify-center w-14 h-14 rounded-full bg-quantum-light/10 group-hover:bg-quantum-light group-hover:scale-110 transition-all duration-300">
+                                    <span class="text-3xl group-hover:text-white transition-colors">🌌</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-quantum-darkest">Step Into True Randomness</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed topic-preview">
+                                Our system taps into real quantum fluctuations...
+                            </p>
+                            <div class="topic-content hidden mt-4 pt-4 border-t border-gray-200">
+                                <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                    Our system taps into real quantum fluctuations—the same unpredictable events shaping
+                                    the universe at microscopic scales.
+                                    The result? Genuine randomness, not mathematical imitation.
+                                </p>
+                                <p class="text-sm font-semibold text-quantum-darkest mb-3">Use it for:</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-3 py-1 bg-quantum-light/10 text-quantum-dark rounded-full text-xs font-mono">🎲
+                                        Dice</span>
+                                    <span
+                                        class="px-3 py-1 bg-quantum-light/10 text-quantum-dark rounded-full text-xs font-mono">🎨
+                                        Colors</span>
+                                    <span
+                                        class="px-3 py-1 bg-quantum-light/10 text-quantum-dark rounded-full text-xs font-mono">🔢
+                                        Numbers</span>
+                                    <span
+                                        class="px-3 py-1 bg-quantum-light/10 text-quantum-dark rounded-full text-xs font-mono">🔐
+                                        Passwords</span>
+                                    <span
+                                        class="px-3 py-1 bg-quantum-light/10 text-quantum-dark rounded-full text-xs font-mono">🎯
+                                        Creative</span>
+                                </div>
+                                <p class="text-gray-600 text-sm leading-relaxed mt-4 italic">
+                                    Or simply because you're curious to see what the universe "chooses."
+                                </p>
+                            </div>
+                            <button
+                                class="mt-4 text-sm font-mono text-quantum-light hover:text-quantum-medium flex items-center gap-2 expand-btn">
+                                <span>Read More</span>
+                                <span class="transform transition-transform group-hover:translate-x-1">→</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Why It Matters -->
+                    <div
+                        class="topic-card group bg-white rounded-xl border-2 border-gray-200 hover:border-quantum-light transition-all duration-300 cursor-pointer flex flex-col">
+                        <div class="p-6">
+                            <div class="flex items-center gap-4 mb-4">
+                                <div
+                                    class="flex items-center justify-center w-14 h-14 rounded-full bg-quantum-light/10 group-hover:bg-quantum-light group-hover:scale-110 transition-all duration-300">
+                                    <span class="text-3xl group-hover:text-white transition-colors">🧠</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-quantum-darkest">Why This Matters</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm leading-relaxed topic-preview">
+                                Algorithmic randomness is convenient. Quantum randomness is fundamental...
+                            </p>
+                            <div class="topic-content hidden mt-4 pt-4 border-t border-gray-200">
+                                <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                    <strong>Algorithmic randomness is convenient.</strong><br>
+                                    <strong>Quantum randomness is fundamental.</strong>
+                                </p>
+                                <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                    What you're seeing on this page isn't the result of a formula.
+                                    It's the outcome of a physical process that even we can't predict.
+                                </p>
+                                <div class="bg-quantum-light/5 rounded-lg p-4 border-l-4 border-quantum-light">
+                                    <p class="text-quantum-dark text-sm font-semibold mb-2">
+                                        It's not magic — it's physics.
+                                    </p>
+                                    <p class="text-gray-600 text-sm">
+                                        And you can generate it instantly.
+                                    </p>
+                                </div>
+                                <div class="mt-4 text-center">
+                                    <p class="text-quantum-darkest font-bold text-lg mb-2">🚀 Experience randomness the
+                                        way nature intended.</p>
+                                    <p class="text-gray-600 text-sm">
+                                        Unscripted. Unreproducible. Unpredictable.<br>
+                                        <span class="text-quantum-light font-bold">Quantum-powered.</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <button
+                                class="mt-4 text-sm font-mono text-quantum-light hover:text-quantum-medium flex items-center gap-2 expand-btn">
+                                <span>Read More</span>
+                                <span class="transform transition-transform group-hover:translate-x-1">→</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <main class="mx-auto w-full max-w-[1550px] px-4 sm:px-12 lg:px-32 xl:px-40 py-12">
+
+
+            <!-- Home Middle Ad Slot -->
+            <div id="ad-home-middle" class="w-full max-w-4xl mx-auto my-12"></div>
+
+            <!-- About Quantum Randomness -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+                <div class="bg-white rounded-xl border border-gray-200 p-6">
+                    <h3 class="text-xl font-bold text-quantum-darkest mb-4 flex items-center gap-2">
+                        <span>🔬</span>
+                        <span>What makes it different?</span>
+                    </h3>
+                    <p class="text-gray-600">Traditional computer "random" numbers are actually
+                        <strong>pseudo-random</strong> - they use mathematical algorithms that appear random but are
+                        deterministic. Quantum randomness comes from measuring quantum mechanical processes that are
+                        <strong>fundamentally unpredictable</strong>.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-xl border border-gray-200 p-6">
+                    <h3 class="text-xl font-bold text-quantum-darkest mb-4 flex items-center gap-2">
+                        <span>⚛️</span>
+                        <span>How does it work?</span>
+                    </h3>
+                    <p class="text-gray-600">The <strong>Australian National University (ANU) Quantum Random Number
+                            Generator</strong> measures quantum vacuum fluctuations in real-time. These quantum
+                        measurements provide genuine randomness that cannot be predicted or reproduced.</p>
+                </div>
+
+                <div class="bg-white rounded-xl border border-gray-200 p-6">
+                    <h3 class="text-xl font-bold text-quantum-darkest mb-4 flex items-center gap-2">
+                        <span>🎯</span>
+                        <span>Why does it matter?</span>
+                    </h3>
+                    <p class="text-gray-600">True randomness is essential for cryptography, fair games, unbiased
+                        selection, and scientific simulations. Our quantum-powered tools ensure the highest quality
+                        randomness for applications where fairness and security matter.</p>
+                </div>
+            </div>
+
+            <!-- Attribution -->
+            <div class="mt-6 bg-gray-50 rounded-xl border border-gray-200 p-6 text-center">
+                <p class="text-sm text-gray-600"><strong class="text-quantum-darkest">Data Source:</strong> All
+                    randomness is sourced from the
+                    <a href="https://quantumnumbers.anu.edu.au/" target="_blank"
+                        class="text-quantum-light hover:underline font-semibold">ANU Quantum Random Number
+                        Generator</a>.
+                    The quantum measurements are provided by ANU, while all application logic, algorithms, and user
+                    interfaces
+                    are developed independently by Quantum Random Lab.
+                </p>
+            </div>
+
+        </main>
+
+        <!-- Bottom Banner Ad Slot -->
+        <div id="ad-bottom-banner"
+            class="w-full max-w-[1550px] mx-auto px-4 sm:px-12 lg:px-32 xl:px-40 my-12 flex justify-center"></div>
+
+        <!-- Footer - Tailwind Style -->
+        <footer class="mt-20 border-t border-gray-200 bg-white">
+            <div class="mx-auto w-full max-w-[1550px] px-4 sm:px-12 lg:px-32 xl:px-40 py-12">
+                <div class="text-center space-y-6">
+                    <div class="flex items-center justify-center gap-6 flex-wrap text-sm font-mono">
+                        <a href="https://quantumnumbers.anu.edu.au/" target="_blank"
+                            class="text-quantum-dark hover:text-quantum-light transition-colors">🔗 ANU QRNG Service</a>
+                        <span class="text-gray-300">•</span>
+                        <a href="#" onclick="showPrivacyInfo()"
+                            class="text-quantum-dark hover:text-quantum-light transition-colors">🔒 Privacy Policy</a>
+                        <span class="text-gray-300">•</span>
+                        <a href="#" onclick="showApiInfo()"
+                            class="text-quantum-dark hover:text-quantum-light transition-colors">📊 API Status</a>
+                    </div>
+                    <p class="text-sm text-gray-500">
+                        Powered by quantum physics • Made with scientific precision ⚛️
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Service Status Indicator - Tailwind Style -->
+        <div id="service-status"
+            class="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-gray-200 shadow-lg text-sm font-mono">
+            <span id="status-indicator" class="w-2 h-2 rounded-full bg-quantum-light animate-pulse"></span>
+            <span id="status-text" class="text-quantum-dark">Checking quantum service...</span>
+        </div>
+    </div>
+
+    <!-- Load Services and Components -->
+    <script src="services/qrngService.min.js"></script>
+    <script src="components/QuantumIntegerTool.min.js"></script>
+    <script src="components/QuantumNumberPickerTool.min.js"></script>
+    <script src="components/QuantumCoinFlipTool.min.js"></script>
+    <script src="components/QuantumDiceTool.min.js"></script>
+    <script src="components/QuantumNameTool.min.js"></script>
+    <script src="components/QuantumColorTool.min.js"></script>
+    <script src="components/QuantumHexTool.min.js"></script>
+    <script src="components/QuantumPasswordTool.min.js"></script>
+    <script src="app.min.js"></script>
+</body>
+
+</html>

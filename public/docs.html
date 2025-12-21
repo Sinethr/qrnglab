@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>Documentation - Quantum Random Lab</title>
+    <meta name="description"
+        content="Complete documentation for Quantum Random Lab tools, API reference, and guides on using quantum randomness in your projects.">
+    <meta name="keywords" content="quantum random documentation, API docs, quantum randomness guide, ANU QRNG API">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'quantum': {
+                            'darkest': '#020202',
+                            'dark': '#0d2818',
+                            'medium': '#04471c',
+                            'light': '#058c42',
+                            'bright': '#16db65',
+                        },
+                        'primary': {
+                            DEFAULT: '#058c42',
+                            50: '#e6f7ee',
+                            100: '#b3e6cc',
+                            200: '#80d5aa',
+                            300: '#4dc488',
+                            400: '#1ab366',
+                            500: '#058c42',
+                            600: '#047035',
+                            700: '#035428',
+                            800: '#02381b',
+                            900: '#011c0e',
+                        },
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar for code blocks */
+        .code-block::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .code-block::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .code-block::-webkit-scrollbar-thumb {
+            background: #058c42;
+            border-radius: 4px;
+        }
+
+        .code-block::-webkit-scrollbar-thumb:hover {
+            background: #04471c;
+        }
+    </style>
+
+    <link rel="stylesheet" href="styles.min.css">
+    <link rel="stylesheet" href="components.min.css">
+    <script src="ads.min.js"></script>
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚛️</text></svg>">
+</head>
+
+<body class="min-h-screen bg-gray-50 font-sans antialiased">
+    <div class="relative flex min-h-screen flex-col">
+        <!-- Sticky Navigation -->
+        <div id="header-placeholder"></div>
+        <script src="header.min.js"></script>
+
+        <!-- Hero Section -->
+
+
+        <!-- Hero Section -->
+        <section class="relative py-16 lg:py-24 bg-gradient-to-br from-quantum-light/5 to-white overflow-hidden">
+            <div class="absolute inset-0 pointer-events-none opacity-20"
+                style="background-image: linear-gradient(0deg, rgba(5, 140, 66, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(5, 140, 66, 0.1) 1px, transparent 1px); background-size: 30px 30px;">
+            </div>
+
+            <div class="mx-auto w-full max-w-[1550px] px-4 sm:px-12 lg:px-32 xl:px-40 relative z-10">
+                <div class="text-center space-y-6 max-w-4xl mx-auto">
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-quantum-light/10 border border-quantum-light/30">
+                        <span class="text-xs font-mono font-semibold tracking-wider text-quantum-light uppercase">📚
+                            Documentation</span>
+                    </div>
+
+                    <h1 class="text-5xl lg:text-6xl xl:text-7xl font-bold text-quantum-darkest leading-tight">
+                        Documentation & Guides
+                    </h1>
+
+                    <p class="text-xl text-quantum-dark leading-relaxed">
+                        Everything you need to know about using Quantum Random Lab tools and integrating quantum
+                        randomness into your projects.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content with Ad Layout -->
+        <main class="mx-auto w-full max-w-[1400px] px-4 sm:px-8 py-12">
+            <div class="flex flex-col lg:flex-row gap-6">
+                <!-- Left Sidebar Ad Space -->
+                <aside class="hidden xl:block w-[300px] flex-shrink-0">
+                    <div class="sticky top-20">
+                        <div id="ad-left-sidebar"></div>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <div class="flex-1 min-w-0">
+                    <!-- All existing content goes here -->
+                    <!-- Quick Start -->
+                    <section class="mb-20">
+                        <h2 class="text-4xl font-bold text-quantum-darkest mb-8">Quick Start</h2>
+
+                        <div class="bg-white rounded-xl border-2 border-quantum-light/20 p-8">
+                            <h3 class="text-2xl font-bold text-quantum-darkest mb-4">Getting Started is Simple</h3>
+                            <ol class="space-y-4">
+                                <li class="flex items-start gap-4">
+                                    <span
+                                        class="flex-shrink-0 w-8 h-8 rounded-full bg-quantum-light text-white flex items-center justify-center font-bold">1</span>
+                                    <div>
+                                        <h4 class="font-bold text-quantum-darkest mb-1">Choose Your Tool</h4>
+                                        <p class="text-gray-600">Browse our collection of quantum-powered tools from the
+                                            Tools
+                                            menu</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <span
+                                        class="flex-shrink-0 w-8 h-8 rounded-full bg-quantum-light text-white flex items-center justify-center font-bold">2</span>
+                                    <div>
+                                        <h4 class="font-bold text-quantum-darkest mb-1">Configure Parameters</h4>
+                                        <p class="text-gray-600">Set your preferences (range, length, options, etc.)</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-4">
+                                    <span
+                                        class="flex-shrink-0 w-8 h-8 rounded-full bg-quantum-light text-white flex items-center justify-center font-bold">3</span>
+                                    <div>
+                                        <h4 class="font-bold text-quantum-darkest mb-1">Generate</h4>
+                                        <p class="text-gray-600">Click the generate button to receive your
+                                            quantum-random
+                                            results instantly</p>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </section>
+
+                    <!-- Available Tools -->
+                    <section class="mb-20">
+                        <h2 class="text-4xl font-bold text-quantum-darkest mb-8">Available Tools</h2>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Integers -->
+                            <div
+                                class="bg-white rounded-xl border border-gray-200 p-6 hover:border-quantum-light transition-all duration-300">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <span class="text-3xl">🔢</span>
+                                    <h3 class="text-xl font-bold text-quantum-darkest">Quantum Random Integers</h3>
+                                </div>
+                                <p class="text-gray-600 mb-4">Generate truly random integers within any range. Perfect
+                                    for
+                                    lottery numbers, statistical sampling, or any application requiring random numbers.
+                                </p>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">Custom range (min/max)</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">Generate multiple numbers at once</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">Unique or allow duplicates</span>
+                                    </div>
+                                </div>
+                                <a href="quantum-random-integer-generator.html"
+                                    class="inline-flex items-center gap-2 mt-4 text-sm font-mono text-quantum-light hover:text-quantum-medium">
+                                    <span>Try it now</span>
+                                    <span>→</span>
+                                </a>
+                            </div>
+
+                            <!-- Picker -->
+                            <div
+                                class="bg-white rounded-xl border border-gray-200 p-6 hover:border-quantum-light transition-all duration-300">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <span class="text-3xl">🎯</span>
+                                    <h3 class="text-xl font-bold text-quantum-darkest">Quantum Random Picker</h3>
+                                </div>
+                                <p class="text-gray-600 mb-4">Pick random numbers from a specific range with advanced
+                                    options.
+                                    Ideal for raffles, giveaways, and fair selection processes.</p>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">Flexible range selection</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">Multiple picks</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">Guaranteed fairness</span>
+                                    </div>
+                                </div>
+                                <a href="quantum-random-number-picker.html"
+                                    class="inline-flex items-center gap-2 mt-4 text-sm font-mono text-quantum-light hover:text-quantum-medium">
+                                    <span>Try it now</span>
+                                    <span>→</span>
+                                </a>
+                            </div>
+
+                            <!-- Coin Flip -->
+                            <div
+                                class="bg-white rounded-xl border border-gray-200 p-6 hover:border-quantum-light transition-all duration-300">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <span class="text-3xl">🪙</span>
+                                    <h3 class="text-xl font-bold text-quantum-darkest">Quantum Coin Flip</h3>
+                                </div>
+                                <p class="text-gray-600 mb-4">Flip a truly random quantum coin. Perfect for making
+                                    decisions,
+                                    settling disputes, or testing probability.</p>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">50/50 quantum probability</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">Flip multiple coins</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">Instant results</span>
+                                    </div>
+                                </div>
+                                <a href="quantum-random-coin-flip-generator.html"
+                                    class="inline-flex items-center gap-2 mt-4 text-sm font-mono text-quantum-light hover:text-quantum-medium">
+                                    <span>Try it now</span>
+                                    <span>→</span>
+                                </a>
+                            </div>
+
+                            <!-- Dice -->
+                            <div
+                                class="bg-white rounded-xl border border-gray-200 p-6 hover:border-quantum-light transition-all duration-300">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <span class="text-3xl">🎲</span>
+                                    <h3 class="text-xl font-bold text-quantum-darkest">Quantum Dice</h3>
+                                </div>
+                                <p class="text-gray-600 mb-4">Roll quantum-powered dice with any number of sides. Great
+                                    for
+                                    tabletop games, simulations, and random selection.</p>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">Custom dice (4, 6, 8, 10, 12, 20 sides)</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">Roll multiple dice</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">See total and individual results</span>
+                                    </div>
+                                </div>
+                                <a href="quantum-random-dice-roller.html"
+                                    class="inline-flex items-center gap-2 mt-4 text-sm font-mono text-quantum-light hover:text-quantum-medium">
+                                    <span>Try it now</span>
+                                    <span>→</span>
+                                </a>
+                            </div>
+
+                            <!-- Name Selector -->
+                            <div
+                                class="bg-white rounded-xl border border-gray-200 p-6 hover:border-quantum-light transition-all duration-300">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <span class="text-3xl">👥</span>
+                                    <h3 class="text-xl font-bold text-quantum-darkest">Quantum Name Selector</h3>
+                                </div>
+                                <p class="text-gray-600 mb-4">Randomly select names from a list with quantum fairness.
+                                    Perfect
+                                    for classroom activities, team assignments, and prize draws.</p>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">Enter custom names</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">Select one or multiple winners</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">Completely unbiased selection</span>
+                                    </div>
+                                </div>
+                                <a href="quantum-random-name-picker.html"
+                                    class="inline-flex items-center gap-2 mt-4 text-sm font-mono text-quantum-light hover:text-quantum-medium">
+                                    <span>Try it now</span>
+                                    <span>→</span>
+                                </a>
+                            </div>
+
+                            <!-- Colors -->
+                            <div
+                                class="bg-white rounded-xl border border-gray-200 p-6 hover:border-quantum-light transition-all duration-300">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <span class="text-3xl">🎨</span>
+                                    <h3 class="text-xl font-bold text-quantum-darkest">Quantum Random Colors</h3>
+                                </div>
+                                <p class="text-gray-600 mb-4">Generate truly random colors for design, art, and creative
+                                    projects. Get RGB, HEX, and HSL values instantly.</p>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">Multiple color formats</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">Generate color palettes</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">Copy values with one click</span>
+                                    </div>
+                                </div>
+                                <a href="quantum-random-color-generator.html"
+                                    class="inline-flex items-center gap-2 mt-4 text-sm font-mono text-quantum-light hover:text-quantum-medium">
+                                    <span>Try it now</span>
+                                    <span>→</span>
+                                </a>
+                            </div>
+
+                            <!-- Hex -->
+                            <div
+                                class="bg-white rounded-xl border border-gray-200 p-6 hover:border-quantum-light transition-all duration-300">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <span class="text-3xl">🔠</span>
+                                    <h3 class="text-xl font-bold text-quantum-darkest">Quantum Random Hex</h3>
+                                </div>
+                                <p class="text-gray-600 mb-4">Generate random hexadecimal strings for unique
+                                    identifiers,
+                                    tokens, and cryptographic applications.</p>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">Custom length</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">Uppercase or lowercase</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">High entropy output</span>
+                                    </div>
+                                </div>
+                                <a href="quantum-random-hex-generator.html"
+                                    class="inline-flex items-center gap-2 mt-4 text-sm font-mono text-quantum-light hover:text-quantum-medium">
+                                    <span>Try it now</span>
+                                    <span>→</span>
+                                </a>
+                            </div>
+
+                            <!-- Password -->
+                            <div
+                                class="bg-white rounded-xl border border-gray-200 p-6 hover:border-quantum-light transition-all duration-300">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <span class="text-3xl">🔐</span>
+                                    <h3 class="text-xl font-bold text-quantum-darkest">Quantum Random Password</h3>
+                                </div>
+                                <p class="text-gray-600 mb-4">Create ultra-secure passwords with true quantum
+                                    randomness.
+                                    Maximum entropy for maximum security.</p>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">Customizable length</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">Character type options</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-quantum-light">•</span>
+                                        <span class="text-gray-600">Cryptographically secure</span>
+                                    </div>
+                                </div>
+                                <a href="quantum-random-password-generator.html"
+                                    class="inline-flex items-center gap-2 mt-4 text-sm font-mono text-quantum-light hover:text-quantum-medium">
+                                    <span>Try it now</span>
+                                    <span>→</span>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Understanding Quantum Randomness -->
+                    <section class="mb-20">
+                        <h2 class="text-4xl font-bold text-quantum-darkest mb-8">Understanding Quantum Randomness</h2>
+
+                        <div class="space-y-6">
+                            <div class="bg-white rounded-xl border border-gray-200 p-8">
+                                <h3 class="text-2xl font-bold text-quantum-darkest mb-4">What is Quantum Randomness?
+                                </h3>
+                                <p class="text-gray-600 leading-relaxed mb-4">
+                                    Quantum randomness is fundamentally different from the "random" numbers generated by
+                                    computers. Traditional random number generators use mathematical algorithms
+                                    (pseudo-random
+                                    number generators or PRNGs) that appear random but are actually deterministic—given
+                                    the same
+                                    starting point (seed), they will always produce the same sequence.
+                                </p>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Quantum randomness, on the other hand, comes from measuring quantum mechanical
+                                    processes
+                                    that are inherently unpredictable according to the laws of physics. Even with
+                                    complete
+                                    knowledge of the system, the outcome of a quantum measurement cannot be
+                                    predicted—it's truly
+                                    random.
+                                </p>
+                            </div>
+
+                            <div class="bg-white rounded-xl border border-gray-200 p-8">
+                                <h3 class="text-2xl font-bold text-quantum-darkest mb-4">How ANU QRNG Works</h3>
+                                <p class="text-gray-600 leading-relaxed mb-4">
+                                    The Australian National University's Quantum Random Number Generator uses quantum
+                                    vacuum
+                                    fluctuations as its source of randomness. Here's the process:
+                                </p>
+                                <ol class="space-y-3 text-gray-600">
+                                    <li class="flex items-start gap-3">
+                                        <span class="flex-shrink-0 font-bold text-quantum-light">1.</span>
+                                        <span>A laser beam is directed at a beam splitter in a vacuum chamber</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="flex-shrink-0 font-bold text-quantum-light">2.</span>
+                                        <span>Quantum vacuum fluctuations cause random variations in the beam</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="flex-shrink-0 font-bold text-quantum-light">3.</span>
+                                        <span>These variations are measured by sensitive detectors</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="flex-shrink-0 font-bold text-quantum-light">4.</span>
+                                        <span>The measurements are converted into random binary digits (bits)</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <span class="flex-shrink-0 font-bold text-quantum-light">5.</span>
+                                        <span>These bits are made available through their public API</span>
+                                    </li>
+                                </ol>
+                            </div>
+
+                            <div class="bg-white rounded-xl border border-gray-200 p-8">
+                                <h3 class="text-2xl font-bold text-quantum-darkest mb-4">When to Use Quantum Randomness
+                                </h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <h4 class="font-bold text-quantum-light mb-3">✓ Best For:</h4>
+                                        <ul class="space-y-2 text-sm text-gray-600">
+                                            <li class="flex items-start gap-2">
+                                                <span class="text-quantum-light">•</span>
+                                                <span>Cryptographic key generation</span>
+                                            </li>
+                                            <li class="flex items-start gap-2">
+                                                <span class="text-quantum-light">•</span>
+                                                <span>Fair contests and lotteries</span>
+                                            </li>
+                                            <li class="flex items-start gap-2">
+                                                <span class="text-quantum-light">•</span>
+                                                <span>Scientific simulations</span>
+                                            </li>
+                                            <li class="flex items-start gap-2">
+                                                <span class="text-quantum-light">•</span>
+                                                <span>Statistical sampling</span>
+                                            </li>
+                                            <li class="flex items-start gap-2">
+                                                <span class="text-quantum-light">•</span>
+                                                <span>Unbiased decision making</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-500 mb-3">⚠️ Overkill For:</h4>
+                                        <ul class="space-y-2 text-sm text-gray-600">
+                                            <li class="flex items-start gap-2">
+                                                <span class="text-gray-400">•</span>
+                                                <span>Simple games (unless fairness is critical)</span>
+                                            </li>
+                                            <li class="flex items-start gap-2">
+                                                <span class="text-gray-400">•</span>
+                                                <span>Visual effects and animations</span>
+                                            </li>
+                                            <li class="flex items-start gap-2">
+                                                <span class="text-gray-400">•</span>
+                                                <span>Non-critical randomization</span>
+                                            </li>
+                                            <li class="flex items-start gap-2">
+                                                <span class="text-gray-400">•</span>
+                                                <span>High-frequency random generation (millions per second)</span>
+                                            </li>
+                                        </ul>
+                                        <p class="text-xs text-gray-500 mt-3 italic">Note: While quantum randomness
+                                            works for
+                                            these too, pseudo-random may be more practical.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- API Reference -->
+                    <section class="mb-20">
+                        <h2 class="text-4xl font-bold text-quantum-darkest mb-8">API Reference</h2>
+
+                        <div class="bg-white rounded-xl border border-gray-200 p-8">
+                            <h3 class="text-2xl font-bold text-quantum-darkest mb-4">ANU QRNG API</h3>
+                            <p class="text-gray-600 mb-6">
+                                All our tools use the ANU Quantum Random Number Generator API. You can also use it
+                                directly in
+                                your own projects.
+                            </p>
+
+                            <div class="bg-gray-900 rounded-lg p-6 overflow-x-auto code-block mb-6">
+                                <code class="text-sm text-green-400 font-mono">
+                            <span class="text-gray-400">// Fetch random uint8 values</span><br>
+                            <span class="text-blue-400">const</span> response = <span class="text-blue-400">await</span> <span class="text-yellow-400">fetch</span>(<br>
+                            &nbsp;&nbsp;<span class="text-green-300">'https://qrng.anu.edu.au/API/jsonI.php?length=10&type=uint8'</span><br>
+                            );<br>
+                            <span class="text-blue-400">const</span> data = <span class="text-blue-400">await</span> response.<span class="text-yellow-400">json</span>();<br>
+                            <span class="text-purple-400">console</span>.<span class="text-yellow-400">log</span>(data.data); <span class="text-gray-400">// Array of random numbers</span>
+                        </code>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-bold text-quantum-darkest mb-2">Parameters:</h4>
+                                    <ul class="space-y-2 text-sm text-gray-600">
+                                        <li class="flex items-start gap-2">
+                                            <code
+                                                class="bg-gray-100 px-2 py-1 rounded text-quantum-dark font-mono">length</code>
+                                            <span>Number of random values to generate (1-1024)</span>
+                                        </li>
+                                        <li class="flex items-start gap-2">
+                                            <code
+                                                class="bg-gray-100 px-2 py-1 rounded text-quantum-dark font-mono">type</code>
+                                            <span>Data type: <code class="bg-gray-100 px-1 rounded">uint8</code> (0-255)
+                                                or
+                                                <code class="bg-gray-100 px-1 rounded">uint16</code> (0-65535)</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                                    <p class="text-sm text-yellow-800">
+                                        <strong>Rate Limiting:</strong> The ANU QRNG API has rate limits. For production
+                                        applications, consider implementing caching or batching strategies.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="mt-6">
+                                <a href="https://qrng.anu.edu.au/" target="_blank"
+                                    class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-quantum-light text-white font-mono text-sm hover:bg-quantum-medium transition-all">
+                                    <span>View Official ANU QRNG Documentation</span>
+                                    <span>↗</span>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- FAQ -->
+                    <section class="mb-20">
+                        <h2 class="text-4xl font-bold text-quantum-darkest mb-8">Frequently Asked Questions</h2>
+
+                        <div class="space-y-4">
+                            <details class="bg-white rounded-xl border border-gray-200 p-6 group">
+                                <summary
+                                    class="font-bold text-quantum-darkest cursor-pointer list-none flex items-center justify-between">
+                                    <span>Is this really free?</span>
+                                    <span class="text-quantum-light group-open:rotate-180 transition-transform">▼</span>
+                                </summary>
+                                <p class="text-gray-600 mt-4 leading-relaxed">
+                                    Yes! All our tools are completely free to use with no hidden costs, subscriptions,
+                                    or
+                                    paywalls. We believe quantum randomness should be accessible to everyone.
+                                </p>
+                            </details>
+
+                            <details class="bg-white rounded-xl border border-gray-200 p-6 group">
+                                <summary
+                                    class="font-bold text-quantum-darkest cursor-pointer list-none flex items-center justify-between">
+                                    <span>Do I need to create an account?</span>
+                                    <span class="text-quantum-light group-open:rotate-180 transition-transform">▼</span>
+                                </summary>
+                                <p class="text-gray-600 mt-4 leading-relaxed">
+                                    No account needed! Just visit any tool and start generating quantum random results
+                                    immediately.
+                                </p>
+                            </details>
+
+                            <details class="bg-white rounded-xl border border-gray-200 p-6 group">
+                                <summary
+                                    class="font-bold text-quantum-darkest cursor-pointer list-none flex items-center justify-between">
+                                    <span>How is this different from Math.random()?</span>
+                                    <span class="text-quantum-light group-open:rotate-180 transition-transform">▼</span>
+                                </summary>
+                                <p class="text-gray-600 mt-4 leading-relaxed">
+                                    JavaScript's Math.random() and similar functions use pseudo-random algorithms that
+                                    are
+                                    deterministic and can be predicted if you know the seed. Our quantum randomness
+                                    comes from
+                                    actual physical quantum measurements that are fundamentally unpredictable.
+                                </p>
+                            </details>
+
+                            <details class="bg-white rounded-xl border border-gray-200 p-6 group">
+                                <summary
+                                    class="font-bold text-quantum-darkest cursor-pointer list-none flex items-center justify-between">
+                                    <span>Can I use this for cryptography?</span>
+                                    <span class="text-quantum-light group-open:rotate-180 transition-transform">▼</span>
+                                </summary>
+                                <p class="text-gray-600 mt-4 leading-relaxed">
+                                    While quantum randomness is excellent for cryptographic purposes, we recommend using
+                                    established cryptographic libraries for production security applications. Our tools
+                                    are
+                                    great for learning, testing, and non-critical applications.
+                                </p>
+                            </details>
+
+                            <details class="bg-white rounded-xl border border-gray-200 p-6 group">
+                                <summary
+                                    class="font-bold text-quantum-darkest cursor-pointer list-none flex items-center justify-between">
+                                    <span>What happens if the ANU service is down?</span>
+                                    <span class="text-quantum-light group-open:rotate-180 transition-transform">▼</span>
+                                </summary>
+                                <p class="text-gray-600 mt-4 leading-relaxed">
+                                    Our tools will display an error message if the quantum service is unavailable. The
+                                    ANU QRNG
+                                    service is generally very reliable, but like any online service, occasional downtime
+                                    may
+                                    occur.
+                                </p>
+                            </details>
+
+                            <details class="bg-white rounded-xl border border-gray-200 p-6 group">
+                                <summary
+                                    class="font-bold text-quantum-darkest cursor-pointer list-none flex items-center justify-between">
+                                    <span>Do you store my generated results?</span>
+                                    <span class="text-quantum-light group-open:rotate-180 transition-transform">▼</span>
+                                </summary>
+                                <p class="text-gray-600 mt-4 leading-relaxed">
+                                    No. All generation happens in your browser, and we don't store, track, or log any of
+                                    your
+                                    results. Your quantum random numbers are yours alone.
+                                </p>
+                            </details>
+                        </div>
+                    </section>
+
+                    <!-- Support -->
+                    <section class="mb-8">
+                        <div
+                            class="bg-gradient-to-br from-quantum-light to-quantum-medium rounded-2xl p-12 text-white text-center">
+                            <h2 class="text-4xl font-bold mb-4">Need Help?</h2>
+                            <p class="text-lg mb-8 opacity-90">
+                                Have questions or feedback? We'd love to hear from you!
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                                <a href="about.html"
+                                    class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-white text-quantum-dark font-mono font-semibold hover:bg-gray-100 transition-all">
+                                    <span>📖</span>
+                                    <span>Learn More About Us</span>
+                                </a>
+                                <a href="https://quantumnumbers.anu.edu.au/" target="_blank"
+                                    class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-quantum-darkest text-white font-mono font-semibold hover:bg-quantum-dark transition-all">
+                                    <span>🔗</span>
+                                    <span>Visit ANU QRNG</span>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Bottom Banner Ad Space -->
+                    <div class="mt-8">
+                        <div id="ad-bottom-banner"></div>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar Ad Space -->
+                <aside class="hidden xl:block w-[300px] flex-shrink-0">
+                    <div class="sticky top-20">
+                        <div id="ad-right-sidebar"></div>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- Footer -->
+            <footer class="mt-20 border-t border-gray-200 bg-white">
+                <div class="mx-auto w-full max-w-[1550px] px-4 sm:px-12 lg:px-32 xl:px-40 py-12">
+                    <div class="text-center space-y-6">
+                        <div class="flex items-center justify-center gap-6 flex-wrap text-sm font-mono">
+                            <a href="index.html" class="text-quantum-dark hover:text-quantum-light transition-colors">🏠
+                                Home</a>
+                            <span class="text-gray-300">•</span>
+                            <a href="about.html" class="text-quantum-dark hover:text-quantum-light transition-colors">📖
+                                About</a>
+                            <span class="text-gray-300">•</span>
+                            <a href="docs.html" class="text-quantum-light font-semibold">📚 Docs</a>
+                            <span class="text-gray-300">•</span>
+                            <a href="https://quantumnumbers.anu.edu.au/" target="_blank"
+                                class="text-quantum-dark hover:text-quantum-light transition-colors">🔗 ANU QRNG</a>
+                        </div>
+                        <p class="text-sm text-gray-500">
+                            Powered by quantum physics • Made with scientific precision ⚛️
+                        </p>
+                    </div>
+                </div>
+            </footer>
+    </div>
+</body>
+
+</html>

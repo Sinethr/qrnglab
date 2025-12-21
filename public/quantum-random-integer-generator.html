@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <title>Quantum Random Integers Generator | True Random Numbers</title>
+    <meta name="description"
+        content="Generate truly random integers using quantum physics. Not pseudo-random - genuine quantum randomness from ANU's quantum generator.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'quantum': {
+                            'darkest': '#020202',
+                            'dark': '#0d2818',
+                            'medium': '#04471c',
+                            'light': '#058c42',
+                            'bright': '#16db65',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="styles.min.css">
+    <link rel="stylesheet" href="components.min.css">
+    <script src="header.min.js"></script>
+    <script src="ads.min.js"></script>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Global Header -->
+    <div id="header-placeholder"></div>
+
+    <!-- Page Content with Ad Layout -->
+    <main class="mx-auto w-full max-w-[1400px] px-4 sm:px-8 py-12">
+        <div class="flex flex-col lg:flex-row gap-6">
+            <!-- Left Sidebar Ad Space -->
+            <aside class="hidden xl:block w-[300px] flex-shrink-0">
+                <div class="sticky top-20">
+                    <div id="ad-left-sidebar"></div>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="flex-1 min-w-0">
+                <div class="mb-8">
+                    <div class="flex items-center gap-2 mb-4">
+                        <a href="index.html" class="text-sm text-quantum-dark hover:text-quantum-light">Home</a>
+                        <span class="text-gray-400">/</span>
+                        <span class="text-sm text-quantum-light font-semibold">Quantum Random Integers</span>
+                    </div>
+                    <h1 class="text-4xl lg:text-5xl font-bold text-quantum-darkest mb-4">Quantum Random Integer
+                        Generator</h1>
+                    <p class="text-lg text-gray-600">Generate truly random integers using quantum physics - not
+                        pseudo-random algorithms</p>
+                </div>
+
+                <!-- Tool Container -->
+                <div
+                    class="bg-white rounded-2xl border border-gray-100 p-8 shadow-xl hover:shadow-2xl transition-shadow duration-300 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-quantum-light to-quantum-bright">
+                    </div>
+                    <div id="quantum-integer-tool"></div>
+                </div>
+
+                <!-- Bottom Banner Ad Space -->
+                <div class="mt-8">
+                    <div id="ad-bottom-banner"></div>
+                </div>
+            </div>
+
+            <!-- Right Sidebar Ad Space -->
+            <aside class="hidden xl:block w-[300px] flex-shrink-0">
+                <div class="sticky top-20">
+                    <div id="ad-right-sidebar"></div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Load QRNG Service -->
+    <script src="services/qrngService.min.js"></script>
+
+    <!-- Load component files -->
+    <script src="components/QuantumIntegerTool.min.js"></script>
+    <script src="components/QuantumNumberPickerTool.min.js"></script>
+    <script src="components/QuantumCoinFlipTool.min.js"></script>
+    <script src="components/QuantumDiceTool.min.js"></script>
+    <script src="components/QuantumNameTool.min.js"></script>
+    <script src="components/QuantumColorTool.min.js"></script>
+    <script src="components/QuantumHexTool.min.js"></script>
+    <script src="components/QuantumPasswordTool.min.js"></script>
+    <script src="app.min.js"></script>
+</body>
+
+</html>

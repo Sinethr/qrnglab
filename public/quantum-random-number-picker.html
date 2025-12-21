@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Random Number Picker | True Quantum Randomness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'quantum': {'darkest': '#020202', 'dark': '#0d2818', 'medium': '#04471c', 'light': '#058c42', 'bright': '#16db65'}
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.min.css">
+    <link rel="stylesheet" href="components.min.css">
+    <script src="header.min.js"></script>
+    <script src="ads.min.js"></script>
+</head>
+<body class="bg-gray-50">
+    <div id="header-placeholder"></div>
+    
+    <main class="mx-auto w-full max-w-[1400px] px-4 sm:px-8 py-12">
+        <div class="flex flex-col lg:flex-row gap-6">
+            <aside class="hidden xl:block w-[300px] flex-shrink-0">
+                <div class="sticky top-20">
+                    <div id="ad-left-sidebar"></div>
+                </div>
+            </aside>
+            
+            <div class="flex-1 min-w-0">
+                <div class="mb-8">
+                    <h1 class="text-4xl lg:text-5xl font-bold text-quantum-darkest mb-4">Quantum Random Number Picker</h1>
+                    <p class="text-lg text-gray-600">Generate with true quantum randomness - powered by quantum physics</p>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8 shadow-lg">
+                    <div id="quantum-number-picker-tool"></div>
+                </div>
+                
+                <div class="mt-8">
+                    <div id="ad-bottom-banner"></div>
+                </div>
+            </div>
+            
+            <aside class="hidden xl:block w-[300px] flex-shrink-0">
+                <div class="sticky top-20">
+                    <div id="ad-right-sidebar"></div>
+                </div>
+            </aside>
+        </div>
+    </main>
+    
+    <script src="services/qrngService.min.js"></script>
+    <script src="components/QuantumIntegerTool.min.js"></script>
+    <script src="components/QuantumNumberPickerTool.min.js"></script>
+    <script src="components/QuantumCoinFlipTool.min.js"></script>
+    <script src="components/QuantumDiceTool.min.js"></script>
+    <script src="components/QuantumNameTool.min.js"></script>
+    <script src="components/QuantumColorTool.min.js"></script>
+    <script src="components/QuantumHexTool.min.js"></script>
+    <script src="components/QuantumPasswordTool.min.js"></script>
+    <script src="app.min.js"></script>
+</body>
+</html>
