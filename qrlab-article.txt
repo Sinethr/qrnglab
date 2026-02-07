@@ -65,4 +65,47 @@ Numbers shaped by a universe that refuses to be predicted.
 This is not digital chaos.
 This is cosmic truth, refined by scientific mastery.
 Every result you see is a signature of nature—captured by researchers, distilled by precision instruments, and delivered to you through the most advanced laboratory systems on Earth.
-Welcome to randomness where science meets the sublime.
+Welcome to randomness where science meets the sublime
+
+
+
+# 1. Create a non-root user and give sudo (run as ubuntu or root)
+sudo adduser deploy
+sudo usermod -aG sudo deploy
+# copy your SSH public key to /home/deploy/.ssh/authorized_keys
+
+# 2. Basic OS hardening (run as root)
+sudo apt update && apt upgrade -y
+sudo apt install -y ufw fail2ban curl git
+
+# 3. UFW rules (adjust if you restrict SSH by IP)
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow ssh
+sudo ufw allow http
+sudo ufw allow https
+sudo ufw enable
+
+# 4. Install Docker & Docker Compose (canonical script)
+sudo curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh
+# Add deploy user to docker group
+sudo usermod -aG docker deploy
+
+# Install Docker Compose plugin (if needed)
+sudo apt install -y docker-compose-plugin
+# Verify docker-compose: docker compose version
+
+# 5. Clone repo & create .env (switch to deploy)
+sudo -i -u deploy bash
+cd ~
+sudo git clone <your-repo-url> apps
+cd apps/quantum-random-lab
+# create .env (600)
+sudo umask 177
+cat > .env <<'EOF'
+PORT=3000
+ANU_QRNG_API_KEY=WVclPulCkSa3NkMVnLjDU8BkWXYA1A5K5C3YWsYW
+NODE_ENV=production
+EOF
+chmod 600 .env
+exit
